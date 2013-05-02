@@ -1,0 +1,22 @@
+#!/bin/bash
+
+case "$1" in
+	off|true)
+		# set parameters for battery mode
+		echo 3 > /sys/class/backlight/acer-wmi/brightness
+		/sbin/hdparm -S 6 -B 254 /dev/sda
+		for i in /sys/class/scsi_host/host*/link_power_management_policy; do echo min_power > $i; done
+		echo 0 > /proc/sys/kernel/nmi_watchdog
+		#for i in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do echo powersave > $i; done
+		;;
+	on|false)
+		# set parameters for AC mode
+		echo 7 > /sys/class/backlight/acer-wmi/brightness
+		/sbin/hdparm -S 0 -B 254 /dev/sda
+		for i in /sys/class/scsi_host/host*/link_power_management_policy; do echo max_performance > $i; done
+		echo 1 > /proc/sys/kernel/nmi_watchdog
+		for i in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do echo ondemand > $i; done
+		;;
+	*)
+		echo "Wrong parameter $1"
+esac
