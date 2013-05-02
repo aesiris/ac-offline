@@ -6,7 +6,7 @@ Type=oneshot
 RemainAfterExit=yes
 
 # set parameters for battery mode
-ExecStart=/usr/local/bin/ac-offline true
+ExecStart=/usr/bin/ac-offline true
 
 # set parameters for AC mode
-ExecStop=/usr/local/bin/ac-offline false
+ExecStop=/usr/bin/ac-offline false
