@@ -9,6 +9,7 @@ arch=(any)
 url="http://github.com/aesiris/${_gitname}"
 license=('GPL')
 depends=(hdparm)
+makedepends=(git)
 source=("git://github.com/aesiris/${_gitname}#tag=v${pkgver}")
 md5sums=(SKIP)
 
