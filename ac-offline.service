@@ -2,7 +2,6 @@
 Description=AC offline
 
 [Service]
-Type=oneshot
 RemainAfterExit=yes
 
 # set parameters for battery mode
